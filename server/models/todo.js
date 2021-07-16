@@ -28,4 +28,12 @@ const deleteTodo = async (todo) => {
   await connection.query('DELETE FROM todos WHERE id = $1', [todo.id]);
 };
 
-module.exports = { Todo, createTodo, updateTodo, deleteTodo };
+const getAllTodos = async (id, username) => {
+  const res = await connection.query(
+    'SELECT id, name, is_done FROM todos WHERE user_id = $1 AND username = $2',
+    [id, username]
+  );
+  return res.rows;
+};
+
+module.exports = { Todo, createTodo, updateTodo, deleteTodo, getAllTodos };

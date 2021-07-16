@@ -3,6 +3,7 @@ const {
   createTodo: createTodoModel,
   updateTodo: updateTodoModel,
   deleteTodo: deleteTodoModel,
+  getAllTodos,
 } = require('../models/todo');
 
 exports.createTodo = async (req, res) => {
@@ -45,4 +46,9 @@ exports.deleteTodo = async (req, res) => {
   await deleteTodoModel(todo);
 
   res.sendStatus(204);
+};
+
+exports.getTodo = async (req, res) => {
+  const result = await getAllTodos(req.body.userId, req.body.username);
+  res.send(result);
 };

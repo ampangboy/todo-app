@@ -7,6 +7,22 @@ describe('/todo path', () => {
     resetDb();
   });
 
+  test('it retrieve the to do based on user', async () => {
+    const res = await request(app).get('/todo').send({
+      userId: 1,
+      username: 'Pally',
+    });
+    expect(res.body).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "id": 1,
+    "is_done": false,
+    "name": "Cleaning bathroom",
+  },
+]
+`);
+  });
+
   test('it create a new todo', async () => {
     const res = await request(app).post('/todo').send({
       userId: 1,

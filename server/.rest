@@ -37,3 +37,13 @@ content-type: application/json
 {
     "id": 134
 }
+
+###
+
+GET http://localhost:3000/todo
+content-type: application/json
+
+{
+    "userId": 1,
+    "username": "Pally"
+}

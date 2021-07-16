@@ -16,7 +16,7 @@ const getAllUser = async () => {
 
 const createUser = async (newUser) => {
   const values = [newUser.id, newUser.username];
-  connection.query('INSERT INTO users(id, name) VALUES ($1, $2)', values);
+  await connection.query('INSERT INTO users(id, name) VALUES ($1, $2)', values);
 };
 
 module.exports = { User, getAllUser, createUser };
