@@ -1,14 +1,7 @@
-var mysql = require("mysql");
+connection = require("../connection");
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "me",
-  password: "secret",
-  database: "my_db",
-});
+let allUser = connection.query("SELECT id,name FROM user");
 
-connection.connect();
+connection.end();
 
-// connection.query();
-
-// connection.end();
+module.exports = allUser;
