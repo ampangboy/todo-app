@@ -9,14 +9,14 @@ class User {
   }
 }
 
-User.getAll = async () => {
+const getAllUser = async () => {
   const res = await connection.query('SELECT * FROM users');
   return res.rows;
 };
 
-User.createUser = async (newUser) => {
+const createUser = async (newUser) => {
   const values = [newUser.id, newUser.username];
   connection.query('INSERT INTO users(id, name) VALUES ($1, $2)', values);
 };
 
-module.exports = User;
+module.exports = { User, getAllUser, createUser };

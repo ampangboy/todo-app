@@ -1,19 +1,20 @@
 const connection = require('../connection');
 
 class Todo {
-  constructor(id, username, todoName, isDone) {
+  constructor(id, userId, username, todoName, isDone) {
     this.id = id;
+    this.user_id = userId;
     this.username = username;
     this.todoName = todoName;
     this.isDone = isDone;
   }
 }
 
-Todo.createTodo = async (newTodo) => {
+const createTodo = async (newTodo) => {
   await connection.query(
-    'INSERT INTO todos (user_id, name, is_done) VALUES ($2, $3, $4)',
-    [newTodo.username, newTodo.todoName, newTodo.isDone]
+    'INSERT INTO todos (user_id, username, name, is_done) VALUES ($1, $2, $3, $4)',
+    [newTodo.user_id, newTodo.username, newTodo.todoName, newTodo.isDone]
   );
 };
 
-module.exports = Todo;
+module.exports = { Todo, createTodo };
