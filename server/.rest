@@ -24,7 +24,16 @@ PUT http://localhost:3000/todo
 content-type: application/json
 
 {
-    "id": 1,
+    "id": 135,
     "todoName": "Cleaning up bathroom",
     "isDone": true
+}
+
+###
+
+DELETE http://localhost:3000/todo
+content-type: application/json
+
+{
+    "id": 134
 }

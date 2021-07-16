@@ -27,4 +27,12 @@ describe('/todo path', () => {
 
     expect(res.statusCode).toBe(201);
   });
+
+  test('it should delete the todo', async () => {
+    const res = await request(app).delete('/todo').send({
+      id: 1,
+    });
+
+    expect(res.statusCode).toBe(204);
+  });
 });

@@ -24,4 +24,8 @@ const updateTodo = async (todo) => {
   );
 };
 
-module.exports = { Todo, createTodo, updateTodo };
+const deleteTodo = async (todo) => {
+  await connection.query('DELETE FROM todos WHERE id = $1', [todo.id]);
+};
+
+module.exports = { Todo, createTodo, updateTodo, deleteTodo };
