@@ -1,10 +1,13 @@
-var mysql = require("mysql");
+const { Client } = require('pg');
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "bitname",
-  database: "todo_app",
-});
+let clientConfig = {
+  host: 'localhost',
+  user: 'postgres',
+  password: 'password',
+  database: 'todo_app',
+  port: 5432,
+};
 
-connection.connect();
+const client = new Client(clientConfig);
+
+module.exports = client;
