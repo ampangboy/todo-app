@@ -7,10 +7,10 @@ const User = (user) => {
   this.username = username;
 };
 
-User.getAll = (result) => {
+User.getAll = async (result) => {
   connection.query('SELECT * FROM users', (err, res) => {
     if (err) throw err;
-    result(null, res.rows[0]);
+    result(null, res.rows);
   });
 };
 

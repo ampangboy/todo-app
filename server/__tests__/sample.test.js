@@ -1,13 +1,12 @@
 const request = require('supertest');
 const app = require('../app');
 
-describe('Test the root path', () => {
-  test('It should response the GET method', (done) => {
-    request(app)
-      .get('/')
-      .then((response) => {
-        expect(response.statusCode).toBe(200);
-        done();
-      });
+describe('Test the login path', () => {
+  test('it should allow user with same id and username', async () => {
+    const res = await request(app)
+      .post('/login')
+      .send({ id: 1, username: 'pally' });
+
+    expect(res.statusCode).toBe(200);
   });
 });

@@ -1,12 +1,21 @@
 const User = require('../models/user');
 
-exports.findAll = (req, res) => {
-  User.getAll((err, data) => {
+exports.userLogin = (req, res) => {
+  User.id = req.body.id;
+  User.username = req.body.username;
+
+  User.getAll((err, users) => {
     if (err)
       res.status(500).send({
-        message:
-          err.message || 'Some error occurred while retrieving customers.',
+        message: err.message || 'Some error occurred while retrieving users.',
       });
-    else res.send(data);
+
+    let userExist = users.filter(
+      (user) => User.id === user.id && User.username === user.name
+    );
+
+    if (userExist.length === 0) {
+      res.send(401);
+    } else res.send(200);
   });
 };
