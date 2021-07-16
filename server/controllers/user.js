@@ -1,21 +1,24 @@
 const User = require('../models/user');
 
-exports.userLogin = (req, res) => {
+exports.userLogin = async (req, res) => {
   User.id = req.body.id;
   User.username = req.body.username;
+  let users;
 
-  User.getAll((err, users) => {
-    if (err)
-      res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving users.',
-      });
+  users = await User.getAll();
 
-    let userExist = users.filter(
-      (user) => User.id === user.id && User.username === user.name
-    );
+  let userExist = users.filter(
+    (user) => User.id === user.id && User.username === user.name
+  );
 
-    if (userExist.length === 0) {
-      res.send(401);
-    } else res.send(200);
-  });
+  if (userExist.length === 0) {
+    await User.createUser(User);
+    res.cookie('user_id', User.id);
+    res.cookie('username', User.username);
+    res.sendStatus(201);
+  } else {
+    res.cookie('user_id', User.id);
+    res.cookie('username', User.username);
+    res.sendStatus(200);
+  }
 };
