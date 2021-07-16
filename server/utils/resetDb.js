@@ -8,8 +8,8 @@ function resetDB() {
     'pally',
   ]);
   connection.query(
-    'INSERT INTO todos (username, user_id, name, is_done) VALUES ($1, $2, $3, $4)',
-    ['Pally', 1, 'Cleaning bathroom', false]
+    'INSERT INTO todos (id, username, user_id, name, is_done) VALUES ($1, $2, $3, $4, $5)',
+    ['1', 'Pally', 1, 'Cleaning bathroom', false]
   );
 }
 

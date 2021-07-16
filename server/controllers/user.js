@@ -9,7 +9,7 @@ exports.userLogin = async (req, res) => {
     (u) => user.id === u.id && user.username === u.name
   );
 
-  res.cookie('user_id', user.id);
+  res.cookie('userId', user.id);
   res.cookie('username', user.username);
 
   if (userExist.length === 0) {
