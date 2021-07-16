@@ -1,12 +1,11 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var loginRouter = require('./routes/login');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const loginRouter = require('./routes/login');
+const todoRouter = require('./routes/todo');
 
-//intantiate express app
-var app = express();
+// intantiate express app
+const app = express();
 
 // defind middleware
 app.use(logger('dev'));
@@ -16,5 +15,6 @@ app.use(cookieParser());
 
 // route
 app.use('/login', loginRouter);
+app.use('/todo', todoRouter);
 
 module.exports = app;

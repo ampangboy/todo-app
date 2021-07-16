@@ -5,8 +5,8 @@ module.exports = {
     es2021: true,
     'jest/globals': true,
   },
-  extends: ['airbnb-base', 'jest', 'prettier'],
-  plugins: ['prettier'],
+  extends: ['airbnb-base', 'prettier'],
+  plugins: ['jest', 'prettier'],
   parserOptions: {
     ecmaVersion: 12,
   },
