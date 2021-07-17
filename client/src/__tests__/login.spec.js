@@ -13,4 +13,6 @@ test("The the login page", () => {
   userEvent.type(id, "1");
   userEvent.type(name, "Pally");
   userEvent.click(loginBtn);
+
+  expect(global.window.location.pathname).toEqual("/task");
 });

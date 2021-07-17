@@ -2,13 +2,13 @@ const request = require('supertest');
 const resetDb = require('../utils/resetDb');
 const app = require('../app');
 
-describe('/todo path', () => {
+describe('/api/todo path', () => {
   beforeEach(() => {
     resetDb();
   });
 
   test('it retrieve the to do based on user', async () => {
-    const res = await request(app).get('/todo').send({
+    const res = await request(app).get('/api/todo').send({
       userId: 1,
       username: 'Pally',
     });
@@ -24,7 +24,7 @@ Array [
   });
 
   test('it create a new todo', async () => {
-    const res = await request(app).post('/todo').send({
+    const res = await request(app).post('/api/todo').send({
       userId: 1,
       username: 'Pally',
       todoName: 'Cleaning up closet',
@@ -35,7 +35,7 @@ Array [
   });
 
   test('it edit the todo', async () => {
-    const res = await request(app).put('/todo').send({
+    const res = await request(app).put('/api/todo').send({
       id: 1,
       todoName: 'Cleaning up bathroom',
       isDone: true,
@@ -45,7 +45,7 @@ Array [
   });
 
   test('it should delete the todo', async () => {
-    const res = await request(app).delete('/todo').send({
+    const res = await request(app).delete('/api/todo').send({
       id: 1,
     });
 
