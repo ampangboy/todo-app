@@ -5,14 +5,13 @@ import {
   Avatar,
   Typography,
   makeStyles,
-  Grid,
-  Card,
-  CardContent,
   Button,
-  Box,
   Modal,
+  Paper,
+  TextField,
 } from "@material-ui/core";
 import { useState } from "react";
+import CenteredCard from "../components/centeredCard";
 
 const useStyles = makeStyles({
   container: {
@@ -27,14 +26,7 @@ const useStyles = makeStyles({
   logOut: {
     fontSize: "1.2rem",
   },
-  content: {
-    minHeight: "90vh",
-  },
-  TaskCard: {
-    borderRadius: "15px",
-    width: 320,
-  },
-  noTaskText: {
+  taskHeader: {
     fontSize: "2rem",
     textAlign: "center",
     color: "#7e949a",
@@ -45,6 +37,21 @@ const useStyles = makeStyles({
     margin: "10px 50px",
     borderRadius: "15px",
     padding: "10px 0",
+  },
+  newTaskContainer: {
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+  },
+  newTask: {
+    top: "-50%",
+    left: "-50%",
+    position: "relative",
+    width: 320,
+    padding: "2rem",
+  },
+  button: {
+    marginTop: "1rem",
   },
 });
 
@@ -71,36 +78,41 @@ function Task() {
           </Container>
         </Toolbar>
       </AppBar>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        justifyContent="center"
-        alignContent="center"
-        className={classes.content}
-      >
-        <Grid item>
-          <Card className={classes.TaskCard} elevation={0}>
-            <CardContent>
-              <Box display="flex" flexDirection="column">
-                <Typography className={classes.noTaskText}>
-                  You have no task
-                </Typography>
-                <Button
-                  className={classes.addTask}
-                  variant="contained"
-                  color="primary"
-                  onClick={handleOpenNewTask}
-                >
-                  + New Task
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+      <CenteredCard>
+        <Typography className={classes.taskHeader}>You have no task</Typography>
+        <Button
+          className={classes.addTask}
+          variant="contained"
+          color="primary"
+          onClick={handleOpenNewTask}
+        >
+          + New Task
+        </Button>
+      </CenteredCard>
       <Modal open={openNewTask} onClose={handleCloseNewTask}>
-        <div>test</div>
+        <div className={classes.newTaskContainer}>
+          <Paper className={classes.newTask} elevation={3}>
+            <Typography className={classes.taskHeader}>+ New Task</Typography>
+            <TextField
+              id="new-task"
+              variant="filled"
+              InputProps={{ disableUnderline: true }}
+              label="Task Name"
+              margin="normal"
+              fullWidth
+            />
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              fullWidth
+              size="large"
+              type="submit"
+            >
+              + New Task
+            </Button>
+          </Paper>
+        </div>
       </Modal>
     </>
   );
