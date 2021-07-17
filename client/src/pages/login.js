@@ -17,6 +17,9 @@ const useStyles = makeStyles(() => ({
   button: {
     marginTop: "1rem",
   },
+  fullPage: {
+    minHeight: "95vh",
+  },
 }));
 
 function Login() {
@@ -27,12 +30,11 @@ function Login() {
       container
       spacing={0}
       direction="column"
-      // eslint-disable-next-line spaced-comment
-      alignItems="center" //responsive need to remove this
-      justify="center"
-      style={{ minHeight: "100vh", width: "100%" }}
+      justifyContent="center"
+      alignContent="center"
+      className={classes.fullPage}
     >
-      <Grid item xs={3}>
+      <Grid item>
         <Card className={classes.root}>
           <CardContent className={classes.cardContent}>
             <Typography className={classes.cardTitle}>Login</Typography>
@@ -42,9 +44,9 @@ function Login() {
               className={classes.button}
               variant="contained"
               color="primary"
-              disabledElevation
               fullWidth
               size="large"
+              role="button"
             >
               Login
             </Button>
