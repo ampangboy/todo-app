@@ -41,6 +41,8 @@ function Login() {
 
   const setUser = (idReducer, nameReducer) =>
     dispatch(rootActions.userAction.setUserInfo(idReducer, nameReducer));
+  const setAllTasks = (tasks) =>
+    dispatch(rootActions.taskAction.setAllTasks(tasks));
 
   const handleSubmit = async () => {
     const res = await fetch("http://localhost/api/login", {
@@ -68,6 +70,8 @@ function Login() {
           username: name,
         }),
       }).then((r) => r.json());
+
+      setAllTasks(todos);
 
       history.push("/dashboard");
     }

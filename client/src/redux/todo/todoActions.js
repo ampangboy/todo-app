@@ -1,4 +1,4 @@
-import ADD_NEW_TASK from "./todoTypes";
+import { ADD_NEW_TASK, SET_ALL_TASKS } from "./todoTypes";
 
 const addNewTask = (task = "") => {
   return {
@@ -9,4 +9,13 @@ const addNewTask = (task = "") => {
   };
 };
 
-export default { addNewTask };
+const setAllTasks = (tasks = []) => {
+  return {
+    type: SET_ALL_TASKS,
+    payload: {
+      tasks,
+    },
+  };
+};
+
+export default { addNewTask, setAllTasks };

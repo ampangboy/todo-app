@@ -1,3 +1,4 @@
 const ADD_NEW_TASK = "ADD_NEW_TASK";
+const SET_ALL_TASKS = "SET_ALL_TASKS";
 
-export default ADD_NEW_TASK;
+export { ADD_NEW_TASK, SET_ALL_TASKS };
