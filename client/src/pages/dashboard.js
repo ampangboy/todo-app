@@ -18,6 +18,7 @@ import LatestTask from "../components/latestTask";
 import PieChartCard from "../components/pieChartCard";
 import Todo from "../class/todo";
 import rootActions from "../redux/rootActions";
+import TaskControl from "../components/taskControl";
 
 const useStyles = makeStyles({
   container: {
@@ -64,6 +65,17 @@ const useStyles = makeStyles({
     fontSize: "2rem",
     textAlign: "center",
     color: "#7e949a",
+  },
+  seachText: {
+    margin: "0 2rem",
+    marginTop: "1rem",
+  },
+  paper: {
+    width: "100%",
+    borderRadius: "25px",
+  },
+  taskListContainer: {
+    margin: "2rem",
   },
 });
 
@@ -145,10 +157,25 @@ function Dashboard() {
             >
               + New Task
             </Button>
-            <div>search</div>
+            <TextField
+              disabled
+              id="filled-disabled"
+              defaultValue="Search By Task Name"
+              variant="filled"
+              className={classes.seachText}
+              InputProps={{ disableUnderline: true }}
+            />
           </Box>
         </Grid>
       </Container>
+      <Container maxWidth="xl" className={classes.container}>
+        <Paper elevation={0} className={classes.paper}>
+          <div className={classes.taskListContainer}>
+            <TaskControl />
+          </div>
+        </Paper>
+      </Container>
+
       <Modal open={openNewTask} onClose={handleCloseNewTask}>
         <div className={classes.newTaskContainer}>
           <Paper className={classes.newTask} elevation={3}>
