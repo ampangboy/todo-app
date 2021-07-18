@@ -9,6 +9,8 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import rootActions from "../redux/rootActions";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -35,6 +37,10 @@ function Login() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const setUser = (idReducer, nameReducer) =>
+    dispatch(rootActions.userAction.setUserInfo(idReducer, nameReducer));
 
   const handleSubmit = async () => {
     const res = await fetch("http://localhost/api/login", {
@@ -49,6 +55,7 @@ function Login() {
     });
 
     if (res.status === 200 || res.status === 201) {
+      setUser(id, name);
       history.push("/task");
     }
   };

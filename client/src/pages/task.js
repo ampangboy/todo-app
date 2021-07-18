@@ -11,6 +11,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import CenteredCard from "../components/centeredCard";
 
 const useStyles = makeStyles({
@@ -58,6 +59,8 @@ const useStyles = makeStyles({
 function Task() {
   const classes = useStyles();
   const [openNewTask, setOpenNewTask] = useState(false);
+  const [task, setTask] = useState("");
+  const currentUser = useSelector((state) => state.currentUser);
 
   const handleOpenNewTask = () => {
     setOpenNewTask(true);
@@ -65,6 +68,11 @@ function Task() {
 
   const handleCloseNewTask = () => {
     setOpenNewTask(false);
+  };
+
+  const handleClick = () => {
+    // it need to send data to backend
+    // it need to broadcast to the redux store
   };
 
   return (
@@ -100,6 +108,10 @@ function Task() {
               label="Task Name"
               margin="normal"
               fullWidth
+              value={task}
+              onChange={(e) => {
+                setTask(e.target.value);
+              }}
             />
             <Button
               className={classes.button}
@@ -108,6 +120,7 @@ function Task() {
               fullWidth
               size="large"
               type="submit"
+              onClick={handleClick}
             >
               + New Task
             </Button>
