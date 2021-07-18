@@ -19,6 +19,7 @@
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.12",
     "pg": "^8.6.0",
+    "pm2": "^5.1.0",
     "save-dev": "^0.0.1-security"
   },
   "devDependencies": {
