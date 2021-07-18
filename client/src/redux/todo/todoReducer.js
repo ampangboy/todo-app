@@ -5,6 +5,7 @@ const initialState = {
 };
 
 const tasks = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case ADD_NEW_TASK:
       return {
@@ -15,7 +16,7 @@ const tasks = (state = initialState, action) => {
     case SET_ALL_TASKS:
       return {
         ...state,
-        tasks: state.tasks.concat(action.payload.tasks),
+        tasks: state.tasks.concat(action.payload.tasks.todos),
       };
 
     default:

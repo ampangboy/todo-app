@@ -2,6 +2,7 @@ import { makeStyles, Container, Grid } from "@material-ui/core";
 import Header from "../components/header";
 import TopCard from "../components/topCard";
 import TaskCompleted from "../components/taskCompleted";
+import LatestTask from "../components/latestTask";
 
 const useStyles = makeStyles({
   container: {
@@ -19,9 +20,7 @@ const useStyles = makeStyles({
 
 function Dashboard() {
   const classes = useStyles();
-  // display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  // grid-gap: 1rem;
+
   return (
     <>
       <Header />
@@ -31,7 +30,7 @@ function Dashboard() {
             <TaskCompleted />
           </TopCard>
           <TopCard>
-            <div>test</div>
+            <LatestTask />
           </TopCard>
           <TopCard>
             <div>test</div>
