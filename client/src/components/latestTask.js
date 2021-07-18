@@ -26,11 +26,18 @@ const useStyles = makeStyles({
   todoList: {
     color: "#8ea2a6",
   },
+  doneTodoList: {
+    color: "#8ea2a6",
+    fontSize: "1rem",
+    fontFamily: "Roboto",
+    fontWeight: 400,
+    lineHeight: 1.5,
+    letterSpacing: "0.00938em",
+  },
 });
 
 function LatestTask() {
   const classes = useStyles();
-  // eslint-disable-next-line no-unused-vars
   const tasks = useSelector((state) => state.tasks);
 
   return (
@@ -42,7 +49,11 @@ function LatestTask() {
             <ListItemIcon>
               <RadioButtonUncheckedIcon />
             </ListItemIcon>
-            <Typography>{t.todoName}</Typography>
+            {t.isdone ? (
+              <Typography>{t.todoName}</Typography>
+            ) : (
+              <del className={classes.doneTodoList}>{t.todoName}</del>
+            )}
           </ListItem>
         );
       })}
