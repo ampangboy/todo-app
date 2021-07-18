@@ -66,17 +66,17 @@ function Task() {
   };
 
   const handleClick = async () => {
-    const res = await fetch("http://localhost:3000/api/todo", {
+    const res = await fetch("http://localhost/api/todo", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        body: JSON.stringify({
-          userId: currentUser.id,
-          username: currentUser.name,
-          todoName: task,
-          isDone: false,
-        }),
       },
+      body: JSON.stringify({
+        userId: currentUser.id,
+        username: currentUser.name,
+        todoName: task,
+        isDone: false,
+      }),
     });
 
     const resObj = await res.json();

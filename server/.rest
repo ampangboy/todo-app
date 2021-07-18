@@ -35,8 +35,9 @@ PUT http://localhost:3000/api/todo
 content-type: application/json
 
 {
-    "id": 135,
-    "todoName": "Cleaning up bathroom",
+    "userId": 1,
+    "username": "pally",
+    "todoName": "Cleaning up yada",
     "isDone": true
 }
 
@@ -50,11 +51,3 @@ content-type: application/json
 }
 
 ###
-
-POST http://localhost:3000/api/todo
-content-type: application/json
-
-{
-    "userId": 1,
-    "username": "pally"
-}

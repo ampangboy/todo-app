@@ -101,13 +101,13 @@ function Dashboard() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        body: JSON.stringify({
-          userId: currentUser.id,
-          username: currentUser.name,
-          todoName: task,
-          isDone: false,
-        }),
       },
+      body: JSON.stringify({
+        userId: currentUser.id,
+        username: currentUser.name,
+        todoName: task,
+        isDone: false,
+      }),
     });
 
     const resObj = await res.json();
