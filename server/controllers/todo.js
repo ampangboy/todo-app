@@ -5,6 +5,7 @@ const {
   deleteTodo: deleteTodoModel,
   getAllTodos,
 } = require('../models/todo');
+const { User } = require('../models/user');
 
 exports.createTodo = async (req, res) => {
   const todo = new Todo(
@@ -49,9 +50,16 @@ exports.deleteTodo = async (req, res) => {
 };
 
 exports.getTodo = async (req, res) => {
-  const result = await getAllTodos(req.body.userId, req.body.username);
+  const user = new User(req.body.userId, req.body.username);
+
+  const result = await getAllTodos(user.id, user.username);
+
+  const todos = result.map(
+    (t) => new Todo(t.id, t.user_id, t.username, t.name, t.is_done)
+  );
+
   res.setHeader('Content-Type', 'application/json');
   res.status(200).json({
-    users: result,
+    todos,
   });
 };

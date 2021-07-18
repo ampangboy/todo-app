@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CenteredCard from "../components/centeredCard";
 import rootActions from "../redux/rootActions";
 import Header from "../components/header";
+import Todo from "../class/todo";
 
 const useStyles = makeStyles({
   logOut: {
@@ -66,7 +67,7 @@ function Task() {
 
   const handleClick = async () => {
     const res = await fetch("http://localhost:3000/api/todo", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         body: JSON.stringify({
@@ -78,9 +79,19 @@ function Task() {
       },
     });
 
+    const resObj = await res.json();
+
+    const todo = new Todo(
+      resObj.id,
+      currentUser.id,
+      currentUser.name,
+      task,
+      false
+    );
+
     if (res.status === 201) {
       setOpenNewTask(false);
-      setTaskReducer(task);
+      setTaskReducer(todo);
       setTask("");
       history.push("/dashboard");
     }

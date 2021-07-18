@@ -48,7 +48,6 @@ function Login() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        mode: "no-cors",
       },
       body: JSON.stringify({
         id: Number(1),
@@ -59,10 +58,13 @@ function Login() {
     setUser(id, name);
 
     if (res.status === 200) {
-      const users = await fetch("http://localhost:3000/api/todo", {
+      const todos = await fetch("http://localhost/api/todo", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          id: Number(1),
+          userId: Number(1),
           username: name,
         }),
       }).then((r) => r.json());

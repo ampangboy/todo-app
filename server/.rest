@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "id": 1,
-    "username": "pally"
+    "username": "Pally"
 }
 
 ###
@@ -24,7 +24,7 @@ content-type: application/json
 
 {
     "userId": 1,
-    "username": "Pally",
+    "username": "pally",
     "todoName": "Cleaning up closet",
     "isDone": false
 }
@@ -56,5 +56,5 @@ content-type: application/json
 
 {
     "userId": 1,
-    "username": "Pally"
+    "username": "pally"
 }

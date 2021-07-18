@@ -32,7 +32,7 @@ const deleteTodo = async (todo) => {
 
 const getAllTodos = async (id, username) => {
   const res = await connection.query(
-    'SELECT id, name, is_done FROM todos WHERE user_id = $1 AND username = $2',
+    'SELECT id, user_id, username, name, is_done FROM todos WHERE user_id = $1 AND username = $2',
     [id, username]
   );
   return res.rows;
