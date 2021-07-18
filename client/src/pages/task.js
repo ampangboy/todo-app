@@ -11,8 +11,10 @@ import {
   TextField,
 } from "@material-ui/core";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import CenteredCard from "../components/centeredCard";
+import rootActions from "../redux/rootActions";
 
 const useStyles = makeStyles({
   container: {
@@ -60,7 +62,11 @@ function Task() {
   const classes = useStyles();
   const [openNewTask, setOpenNewTask] = useState(false);
   const [task, setTask] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
+  const setTaskReducer = (taskReducer) =>
+    dispatch(rootActions.userAction.setUserInfo(taskReducer));
 
   const handleOpenNewTask = () => {
     setOpenNewTask(true);
@@ -70,9 +76,26 @@ function Task() {
     setOpenNewTask(false);
   };
 
-  const handleClick = () => {
-    // it need to send data to backend
-    // it need to broadcast to the redux store
+  const handleClick = async () => {
+    const res = await fetch("http://localhost:3000/api/todo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        body: JSON.stringify({
+          userId: currentUser.id,
+          username: currentUser.name,
+          todoName: task,
+          isDone: false,
+        }),
+      },
+    });
+
+    if (res.status === 201) {
+      setOpenNewTask(false);
+      setTaskReducer(task);
+      setTask("");
+      history.push("/dashboard");
+    }
   };
 
   return (
@@ -80,8 +103,10 @@ function Task() {
       <AppBar position="static" color="inherit">
         <Toolbar>
           <Container maxWidth="xl" className={classes.container}>
-            <Avatar>P</Avatar>
-            <Typography className={classes.userName}>Pally</Typography>
+            <Avatar>{currentUser.name[0]}</Avatar>
+            <Typography className={classes.userName}>
+              {currentUser.name}
+            </Typography>
             <Typography className={classes.logOut}>Logout</Typography>
           </Container>
         </Toolbar>
