@@ -1,8 +1,4 @@
 import {
-  AppBar,
-  Toolbar,
-  Container,
-  Avatar,
   Typography,
   makeStyles,
   Button,
@@ -15,17 +11,9 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CenteredCard from "../components/centeredCard";
 import rootActions from "../redux/rootActions";
+import Header from "../components/header";
 
 const useStyles = makeStyles({
-  container: {
-    display: "flex",
-    alignItems: "center",
-  },
-  userName: {
-    paddingLeft: "1.1rem",
-    fontSize: "1.2rem",
-    flexGrow: 1,
-  },
   logOut: {
     fontSize: "1.2rem",
   },
@@ -66,7 +54,7 @@ function Task() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
   const setTaskReducer = (taskReducer) =>
-    dispatch(rootActions.userAction.setUserInfo(taskReducer));
+    dispatch(rootActions.taskAction.addNewTask(taskReducer));
 
   const handleOpenNewTask = () => {
     setOpenNewTask(true);
@@ -100,17 +88,7 @@ function Task() {
 
   return (
     <>
-      <AppBar position="static" color="inherit">
-        <Toolbar>
-          <Container maxWidth="xl" className={classes.container}>
-            <Avatar>{currentUser.name[0]}</Avatar>
-            <Typography className={classes.userName}>
-              {currentUser.name}
-            </Typography>
-            <Typography className={classes.logOut}>Logout</Typography>
-          </Container>
-        </Toolbar>
-      </AppBar>
+      <Header />
       <CenteredCard>
         <Typography className={classes.taskHeader}>You have no task</Typography>
         <Button

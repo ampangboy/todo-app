@@ -9,7 +9,7 @@ const tasks = (state = initialState, action) => {
     case ADD_NEW_TASK:
       return {
         ...state,
-        tasks: tasks.unshift(action.payload.task),
+        tasks: [...state.tasks].unshift(action.payload.task),
       };
 
     default:

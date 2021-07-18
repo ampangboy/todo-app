@@ -1,5 +1,11 @@
+import Header from "../components/header";
+
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default Dashboard;
