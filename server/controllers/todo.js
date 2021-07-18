@@ -15,8 +15,11 @@ exports.createTodo = async (req, res) => {
     req.body.isDone
   );
 
-  await createTodoModel(todo);
+  const result = await createTodoModel(todo);
 
+  res.set({
+    body: result,
+  });
   res.sendStatus(201);
 };
 

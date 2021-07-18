@@ -11,10 +11,12 @@ class Todo {
 }
 
 const createTodo = async (newTodo) => {
-  await connection.query(
-    'INSERT INTO todos (user_id, username, name, is_done) VALUES ($1, $2, $3, $4)',
+  const result = await connection.query(
+    'INSERT INTO todos (user_id, username, name, is_done) VALUES ($1, $2, $3, $4) RETURNING id;',
     [newTodo.userId, newTodo.username, newTodo.todoName, newTodo.isDone]
   );
+
+  return result.rows[0];
 };
 
 const updateTodo = async (todo) => {
