@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import { useSelector } from "react-redux";
+import sortArrayOfObject from "../utils/sortArrayOfObject";
 
 const useStyles = makeStyles({
   root: {
@@ -38,21 +39,23 @@ const useStyles = makeStyles({
 
 function LatestTask() {
   const classes = useStyles();
-  const tasks = useSelector((state) => state.tasks);
+  let tasks = useSelector((state) => state.tasks);
+
+  tasks = sortArrayOfObject(tasks.tasks, "id").slice(0, 3);
 
   return (
     <div className={classes.root}>
       <Typography className={classes.title}>Latest Created Task</Typography>
-      {tasks.tasks.map((t) => {
+      {tasks.map((t) => {
         return (
           <ListItem button>
             <ListItemIcon>
               <RadioButtonUncheckedIcon />
             </ListItemIcon>
-            {t.isdone ? (
-              <Typography>{t.todoName}</Typography>
-            ) : (
+            {t.isDone ? (
               <del className={classes.doneTodoList}>{t.todoName}</del>
+            ) : (
+              <Typography>{t.todoName}</Typography>
             )}
           </ListItem>
         );

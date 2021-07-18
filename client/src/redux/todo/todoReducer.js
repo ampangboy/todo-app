@@ -5,7 +5,6 @@ const initialState = {
 };
 
 const tasks = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case ADD_NEW_TASK:
       return {
