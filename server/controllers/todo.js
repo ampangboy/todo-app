@@ -17,10 +17,7 @@ exports.createTodo = async (req, res) => {
 
   const result = await createTodoModel(todo);
 
-  res.set({
-    body: result,
-  });
-  res.sendStatus(201);
+  res.status(201).json(result);
 };
 
 exports.updateTodo = async (req, res) => {
@@ -53,5 +50,8 @@ exports.deleteTodo = async (req, res) => {
 
 exports.getTodo = async (req, res) => {
   const result = await getAllTodos(req.body.userId, req.body.username);
-  res.send(result);
+  res.setHeader('Content-Type', 'application/json');
+  res.status(200).json({
+    users: result,
+  });
 };

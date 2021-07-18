@@ -8,12 +8,12 @@ const {
 
 const router = express.Router();
 
-router.post('/', createTodo);
+router.put('/', createTodo);
 
-router.put('/', updateTodo);
+router.patch('/', updateTodo);
 
 router.delete('/', deleteTodo);
 
-router.get('/', getTodo);
+router.post('/', getTodo);
 
 module.exports = router;

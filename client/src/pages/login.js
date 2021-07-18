@@ -46,16 +46,31 @@ function Login() {
     const res = await fetch("http://localhost/api/login", {
       method: "POST",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
-        body: JSON.stringify({
-          id,
-          username: name,
-        }),
+        mode: "no-cors",
       },
+      body: JSON.stringify({
+        id: Number(1),
+        username: name,
+      }),
     });
 
-    if (res.status === 200 || res.status === 201) {
-      setUser(id, name);
+    setUser(id, name);
+
+    if (res.status === 200) {
+      const users = await fetch("http://localhost:3000/api/todo", {
+        method: "POST",
+        body: JSON.stringify({
+          id: Number(1),
+          username: name,
+        }),
+      }).then((r) => r.json());
+
+      history.push("/dashboard");
+    }
+
+    if (res.status === 201) {
       history.push("/task");
     }
   };
